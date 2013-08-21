@@ -24,5 +24,5 @@ $connectionOptions = array(
 
 // obtaining the entity manager
 $entityManager = EntityManager::create($connectionOptions, $config);
-$container = Container::Instance(['entityManager' => $entityManager]);
+$container = Container::Instance(array('entityManager' => $entityManager));
 

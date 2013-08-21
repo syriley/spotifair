@@ -35,7 +35,6 @@ def stage(b='master'):
 
 def live():
     env.env = 'live'
-    env.port = 222
     env.hosts = ['spotifair.com']
     global branch
     branch = "master"
