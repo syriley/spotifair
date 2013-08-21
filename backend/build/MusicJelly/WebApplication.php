@@ -30,10 +30,10 @@ class WebApplication{
 	    $app->error(function (\Exception $e, $code) use ($app) {
             // $this->error($e->getMessage());
             
-            $error = ([
+            $error = (array(
                 'message' => $e->getMessage(),
                 // 'trace'   => $e->getTraceAsString(),
-            ]);
+            ));
             return new Response(json_encode($error), 400);
         });
 
