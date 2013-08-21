@@ -1,0 +1,1 @@
+rsync -avz ~/projects/musicjelly/assets/videos/* --exclude 'originals' mj@stage.musicjelly.com:~/projects/musicjelly/assets/videos

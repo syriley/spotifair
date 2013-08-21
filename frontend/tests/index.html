@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../tests/css/mocha.css" type="text/css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+    <div id="mocha"></div>
+    <script src="../tests/lib/mocha.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../tests/lib/sinon.js" type="text/javascript" charset="utf-8"></script>
+    <script src="config.js"></script>
+    <script src="../build/js/lib/require.js" type="text/javascript" charset="utf-8"></script>
+ 
+
+    
+    <script>
+            // You can do this in the grunt config for each mocha task, see the `options` config
+        mocha.setup({
+            ui: 'bdd',
+            ignoreLeaks: true
+        });
+
+        // Don't track
+        window.notrack = true;
+         
+        // Mocha run helper, used for browser
+        // var runMocha = function() {
+        //     mocha.run();
+        // };
+     
+
+    </script>
+    <script type="text/javascript" charset="utf-8">
+        console.log('here');
+        require([
+            '../../tests/suites/all',
+        ]);
+    </script>
+</body>
+</html>
