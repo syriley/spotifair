@@ -21,14 +21,14 @@ def doDeploy(branch, env, codeDir):
 
 
 def deploy():
-    env.user = "mj"
-    codeDir = '/home/mj/projects/musicjelly'
+    env.user = "spotifair"
+    codeDir = '/home/spotifair/projects/spotifair'
     doDeploy(branch, env, codeDir)
 
 
 def stage(b='master'):
     env.env = 'stage'
-    env.hosts = ["stage.musicjelly.com"]
+    env.hosts = ["stage.spotifair.com"]
     global branch
     branch = b
 
@@ -36,7 +36,7 @@ def stage(b='master'):
 def live():
     env.env = 'live'
     env.port = 222
-    env.hosts = ['musicjelly.com']
+    env.hosts = ['spotifair.com']
     global branch
     branch = "master"
 
@@ -44,6 +44,6 @@ def live():
 def client():
     env.env = 'clientStage'
     env.port = 222
-    env.hosts = ['stage.client.musicjelly.com', 'live.client.musicjelly.com']
+    env.hosts = ['stage.client.spotifair.com', 'live.client.spotifair.com']
     global branch
     branch = "master"

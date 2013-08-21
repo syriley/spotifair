@@ -5443,6 +5443,7 @@ a.list-group-item.active > .badge,
 }
 html,
 body {
+  margin-top: 100px;
   height: 100%;
   overflow-x: hidden;
 }
