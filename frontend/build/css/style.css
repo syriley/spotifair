@@ -5431,6 +5431,163 @@ a.list-group-item.active > .badge,
   cursor: hand;
   cursor: pointer;
 }
+.playlistModule .search-container {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.playlistModule .search-container:before,
+.playlistModule .search-container:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.playlistModule .search-container:after {
+  clear: both;
+}
+.playlistModule .search-container:before,
+.playlistModule .search-container:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.playlistModule .search-container:after {
+  clear: both;
+}
+.playlistModule .search-container .search-form {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.playlistModule .search-container button {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.428571429;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  white-space: nowrap;
+  /* user-select */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
+  color: #ffffff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.playlistModule .search-container button:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.playlistModule .search-container button:hover,
+.playlistModule .search-container button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.playlistModule .search-container button:active,
+.playlistModule .search-container button.active {
+  outline: 0;
+  background-image: none;
+  /* box-shadow */
+  -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.playlistModule .search-container button.disabled,
+.playlistModule .search-container button[disabled],
+fieldset[disabled] .playlistModule .search-container button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  /* box-shadow */
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.playlistModule .search-container button:hover,
+.playlistModule .search-container button:focus,
+.playlistModule .search-container button:active,
+.playlistModule .search-container button.active,
+.open .dropdown-toggle.playlistModule .search-container button {
+  color: #333333;
+  background-color: #ebebeb;
+  border-color: #adadad;
+}
+.playlistModule .search-container button:active,
+.playlistModule .search-container button.active,
+.open .dropdown-toggle.playlistModule .search-container button {
+  background-image: none;
+}
+.playlistModule .search-container button.disabled,
+.playlistModule .search-container button[disabled],
+fieldset[disabled] .playlistModule .search-container button,
+.playlistModule .search-container button.disabled:hover,
+.playlistModule .search-container button[disabled]:hover,
+fieldset[disabled] .playlistModule .search-container button:hover,
+.playlistModule .search-container button.disabled:focus,
+.playlistModule .search-container button[disabled]:focus,
+fieldset[disabled] .playlistModule .search-container button:focus,
+.playlistModule .search-container button.disabled:active,
+.playlistModule .search-container button[disabled]:active,
+fieldset[disabled] .playlistModule .search-container button:active,
+.playlistModule .search-container button.disabled.active,
+.playlistModule .search-container button[disabled].active,
+fieldset[disabled] .playlistModule .search-container button.active {
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+.playlistModule .search-container button:hover,
+.playlistModule .search-container button:focus,
+.playlistModule .search-container button:active,
+.playlistModule .search-container button.active,
+.open .dropdown-toggle.playlistModule .search-container button {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+.playlistModule .search-container button:active,
+.playlistModule .search-container button.active,
+.open .dropdown-toggle.playlistModule .search-container button {
+  background-image: none;
+}
+.playlistModule .search-container button.disabled,
+.playlistModule .search-container button[disabled],
+fieldset[disabled] .playlistModule .search-container button,
+.playlistModule .search-container button.disabled:hover,
+.playlistModule .search-container button[disabled]:hover,
+fieldset[disabled] .playlistModule .search-container button:hover,
+.playlistModule .search-container button.disabled:focus,
+.playlistModule .search-container button[disabled]:focus,
+fieldset[disabled] .playlistModule .search-container button:focus,
+.playlistModule .search-container button.disabled:active,
+.playlistModule .search-container button[disabled]:active,
+fieldset[disabled] .playlistModule .search-container button:active,
+.playlistModule .search-container button.disabled.active,
+.playlistModule .search-container button[disabled].active,
+fieldset[disabled] .playlistModule .search-container button.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
 .loader {
   position: absolute;
   top: 170px;

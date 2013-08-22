@@ -3,7 +3,10 @@
 namespace MusicJelly\Entities;
 // src/Product.php
 /**
- * @Entity @Table(name="artists")
+ * @Entity(repositoryClass="MusicJelly\Repositories\ArtistRepository") 
+ *
+ * @Table(name="artists",
+ *                uniqueConstraints={@UniqueConstraint(name="name_unique", columns={"name"})})
  **/
 class Artist
 {

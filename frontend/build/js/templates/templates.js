@@ -44,7 +44,16 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"main\"></div>";
+  return "<div class=\"search\"></div>\n<div class=\"main\"></div>";
+  });
+
+this["Templates"]["playlist/templates/searchTemplate.html"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"search-form\">\n    <input type=\"text\" class=\"form-control search-term\" placeholder=\"Search\">\n</div>\n<button class=\"search-button\">Search</button>";
   });
 
 this["Templates"]["playlist/templates/tableHeadTemplate.html"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {

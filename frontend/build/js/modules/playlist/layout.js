@@ -9,6 +9,7 @@ define([
         template : Templates['playlist/templates/layoutTemplate.html'],
 
 		regions:{
+			search: '.search',
 			main: '.main',
 		}
 	});

@@ -7,15 +7,15 @@ use MusicJelly\Container;
 
 class Service {
 
-	public function __construct($app){
-		$this->app = $app;
-		$this->container = Container::Instance();
+    public function __construct($app){
+        $this->app = $app;
+        $this->container = Container::Instance();
         $this->entityManager = $this->container['entityManager'];
 
-		$this->addEndpoints();
-	}
+        $this->addEndpoints();
+    }
 
-	public function addEndpoints(){}
+    public function addEndpoints(){}
 
 
     /**
@@ -25,7 +25,7 @@ class Service {
      * 
      * @return string The escaped parameter.
      */
-    public function getParameter($name, $optional=false){
+    public function getParameter($name){
         $app = $this->app;
         $value = $app['request']->get($name);
 
@@ -34,22 +34,22 @@ class Service {
     }
 
     public function log($message, $severity='debug'){
-    	switch ($severity) {
-    		case 'error':
-    			$this->app['monolog']->addError($message);
-    			break;
-    		
-    		default:
-    			$this->app['monolog']->addDebug($message);
-    			break;
-    	}
+        switch ($severity) {
+            case 'error':
+                $this->app['monolog']->addError($message);
+                break;
+            
+            default:
+                $this->app['monolog']->addDebug($message);
+                break;
+        }
     }
 
     public function debug($message){
-    	$this->log($message, 'debug');
+        $this->log($message, 'debug');
     }
 
     public function error($message){
-    	$this->log($message, 'error');
+        $this->log($message, 'error');
     }
 }

@@ -3,6 +3,7 @@
 namespace MusicJelly\Services;
 
 use Symfony\Component\HttpFoundation\Request;
+use MusicJelly\Crawlers\MldbCrawler;
 
 class TrackService extends Service {
 
@@ -17,9 +18,18 @@ class TrackService extends Service {
     }
     
     public function all(Request $request){
+            $term = $this->getParameter('term');
+            if($term){
+                $this->debug('term is '.$term);
+                $searchRepository = $this->entityManager->getRepository('MusicJelly\Entities\SearchTerm');
+                $alreadySearched = $searchRepository->isAlreadySearched($term);
+                if($alreadySearched === false){
+                    $this->searchForTracks($term);
+                }
+            }
             $trackRepository = $this->entityManager->getRepository('MusicJelly\Entities\Track');
 
-            $tracks = $trackRepository->findAll();
+            $tracks = $trackRepository->search($term);
             $trackDtos = array();
             foreach ($tracks as $track) {
                 array_push($trackDtos, $track->toDto());
@@ -35,6 +45,11 @@ class TrackService extends Service {
 
             // $this->app['mailer']->send($message);
             return $this->app->json($trackDtos);
+    }
+
+    public function searchForTracks($term){
+        $crawler = new MldbCrawler;
+        $crawler->search($term);
     }
 
 }

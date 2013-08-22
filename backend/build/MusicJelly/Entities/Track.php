@@ -11,13 +11,14 @@ class Track
     public $id;
     /** @Column(type="string") **/
     public $name;
-    /** @Column(type="string") **/
+    /** @Column(type="string", nullable=true) **/
     public $url;
+    /** @Column(type="text") **/
+    public $lyrics;
     /** 
      *  @ManyToOne(targetEntity="MusicJelly\Entities\Artist", fetch="EAGER")
      */
     public $artist;
-
     /** 
      *  @ManyToOne(targetEntity="MusicJelly\Entities\Album", fetch="EAGER")
      */

@@ -2,14 +2,14 @@
 
 namespace MusicJelly\Entities;
 /**
- * @Entity(repositoryClass="MusicJelly\Repositories\TrackRepository") 
+ * @Entity(repositoryClass="MusicJelly\Repositories\AlbumRepository") 
  * @Table(name="albums")
  **/
 class Album
 {
     /** @Id @Column(type="integer") @GeneratedValue **/
     public $id;
-    /** @Column(type="string") **/
+    /** @Column(type="string", unique=true) **/
     public $name;
     /** 
      *  @ManyToOne(targetEntity="MusicJelly\Entities\Artist", fetch="EAGER")
