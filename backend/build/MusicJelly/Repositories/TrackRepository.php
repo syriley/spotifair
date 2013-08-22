@@ -51,13 +51,13 @@ class TrackRepository extends EntityRepository
                 FROM MusicJelly\Entities\Track t 
                 JOIN t.artist ar 
                 JOIN t.album al 
-                WHERE t.name = ?1
-                    OR ar.name = ?1
-                    OR al.name = ?1";
+                WHERE t.name like ?1
+                    OR ar.name like ?1
+                    OR al.name like ?1";
 
         $query = $this->_em->createQuery($dql);
 
-        $query->setParameter(1, $term);
+        $query->setParameter(1, '%'.$term.'%');
         return $query->getResult();
         
     }
