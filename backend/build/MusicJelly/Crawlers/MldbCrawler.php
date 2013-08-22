@@ -3,8 +3,8 @@
 namespace MusicJelly\Crawlers;
 
 require __DIR__.'/simpleHtmlDom.php';
-require_once __DIR__.'/../../Google/Google_Client.php';  
-require_once __DIR__.'/../../Google/contrib/Google_YouTubeService.php';  
+require_once __DIR__.'/../../../Google/Google_Client.php';  
+require_once __DIR__.'/../../../Google/contrib/Google_YouTubeService.php';  
 
 use MusicJelly\Entities\Artist;
 use MusicJelly\Entities\Album;
