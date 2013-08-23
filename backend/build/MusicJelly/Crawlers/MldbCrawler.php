@@ -83,7 +83,9 @@ class MldbCrawler {
         $track->album = $album;
         if(!$trackRepository->exists($track)) {
             $track->url = $this->getYoutubeUrl(sprintf('%s, %s',$artist->name, $track->name));
-            $trackRepository->save($track);
+            if($track->url != null){
+                $trackRepository->save($track);
+            }
         }
     }
 
@@ -125,6 +127,9 @@ class MldbCrawler {
         $videos = '';  
         $channels = '';  
       
+        if(!isset($searchResponse['items'][0])) {
+            return null;
+        }
         $url = 'http://www.youtube.com/watch?v='.$searchResponse['items'][0]['id']['videoId'];
         return $url;
        }
