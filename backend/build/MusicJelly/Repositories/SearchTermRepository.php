@@ -5,9 +5,9 @@ namespace MusicJelly\Repositories;
 use Doctrine\ORM\EntityRepository;
 use MusicJelly\Entities\SearchTerm;
 
-class SearchTermRepository extends EntityRepository
+class SearchTermRepository extends Repository
 {
-    public function isAlreadySearched($term){
+    public function addTerm($term){
         $search = $this->findOneBy(array(
             'term' => $term
         ));
@@ -15,7 +15,6 @@ class SearchTermRepository extends EntityRepository
             $search->count++;
             $this->_em->persist($search);
             $this->_em->flush();
-            return true;
         }
         else {
             $search = new SearchTerm();
@@ -24,7 +23,13 @@ class SearchTermRepository extends EntityRepository
             $this->_em->flush();
         }
 
-        return false;
+    }
+
+    public function getNewSearch(){
+        return $this->findOneBy(
+            array('complete' => false),
+            array('id' => 'ASC')
+        );
     }
 
 }

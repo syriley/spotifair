@@ -5,7 +5,7 @@ namespace MusicJelly\Repositories;
 use Doctrine\ORM\EntityRepository;
 use MusicJelly\Entities\SearchTerm;
 
-class AlbumRepository extends EntityRepository
+class AlbumRepository extends Repository
 {
     public function save($album){
         if(empty($album->name)){

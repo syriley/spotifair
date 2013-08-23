@@ -1,29 +1,29 @@
 <?php
 
 namespace MusicJelly\Entities;
-
-use \Date;
+use \DateTime;
 /**
- * @Entity(repositoryClass="MusicJelly\Repositories\SearchTermRepository") 
- * @Table(name="searchedTerms")
+ * @Entity(repositoryClass="MusicJelly\Repositories\MldbTrackRepository") 
+ * @Table(name="mldbTracks")
  **/
-class SearchTerm
+class MldbTrack
 {
     /** @Id @Column(type="integer") @GeneratedValue **/
     public $id;
     /** @Column(type="string", unique=true) **/
-    public $term;
-    /** @Column(type="integer") **/
-    public $count;
+    public $url;
+
     /** @Column(type="date") **/
     public $created;
-    /** @Column(type="boolean") **/
-    public $complete;
+
+    /** @Column(type="date") **/
+    public $completed;
     
     public function __construct(){
-        $this->complete = false;
         $this->count = 1;
-        $this->created = new Date();
+        $this->created = new DateTime();
+        $this->completed = new DateTime('2000-01-01');
+
     }
 
     public function toDto(){

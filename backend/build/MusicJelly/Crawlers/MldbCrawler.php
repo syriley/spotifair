@@ -8,12 +8,16 @@ require_once __DIR__.'/../../../Google/contrib/Google_YouTubeService.php';
 
 use MusicJelly\Entities\Artist;
 use MusicJelly\Entities\Album;
+use MusicJelly\Entities\MldbTrack;
+use MusicJelly\Entities\StartPath;
 use MusicJelly\Entities\Track;
 use MusicJelly\container;
 use \Google_Client;
 use \Google_YoutubeService;
 
 class MldbCrawler {
+
+    const MLDB_ORG = 'http://www.mldb.org/';
 
     public function __construct(){
         $this->container = Container::Instance();
@@ -24,16 +28,27 @@ class MldbCrawler {
         $html = file_get_html('http://www.mldb.org/search?si=0&mm=0&ob=1&mq='.$term);
         foreach ($html->find('a') as $link) {
             if(strpos($link->href, 'song-') !== false){
-                $this->getTrackDetails($link->href);
+                $this->saveTrackUrl($link->href);
             }
             else if(strpos($link->href, 'artist-')  !== false){
-                $this->saveStartPath($link->href);
+                $this->saveStartPath(self::MLDB_ORG.$link->href);
             }
         }
     }
 
-    public function getTrackDetails($path){
-        $url= 'http://www.mldb.org/'.$path;
+    public function scrapeStartPath($url){
+        $html = file_get_html($url);
+        foreach ($html->find('a') as $link) {
+            if(strpos($link->href, 'song-') !== false){
+                $this->saveTrackUrl($link->href);
+            }
+            else if(strpos($link->href, 'artist-')  !== false || strpos($link->href, 'album-')  !== false){
+                $this->saveStartPath(self::MLDB_ORG.$link->href);
+            }
+        }   
+    }
+
+    public function getTrackDetails($url){
         $html = file_get_html($url);
 
         $artist = new Artist();
@@ -43,9 +58,11 @@ class MldbCrawler {
         foreach ($html->find('a') as $link) {
             if(strpos($link->href, 'artist-') !== false && strpos($link->style, 'font-size:14') !== false){
                 $artist->name = trim($link->plaintext);
+                $this->saveStartPath(self::MLDB_ORG.$link->href);
             }
             if(strpos($link->href, 'album-') !== false && strpos($link->style, 'font-size:14px') !== false){
                 $album->name = trim($link->plaintext);
+                $this->saveStartPath(self::MLDB_ORG.$link->href);
                 break;
             }
         }
@@ -68,11 +85,23 @@ class MldbCrawler {
             $track->url = $this->getYoutubeUrl(sprintf('%s, %s',$artist->name, $track->name));
             $trackRepository->save($track);
         }
+    }
 
+    public function saveTrackUrl($path){
+        $url= SELF::MLDB_ORG.$path;
+        $mldbTrackRepository = $this->entityManager->getRepository('MusicJelly\Entities\MldbTrack');
+        $mldbTrack = new MldbTrack();
+        $mldbTrack->url = $url;
+        $mldbTrackRepository->save($mldbTrack);
 
     }
 
     public function saveStartPath($url){
+        $startPathRepository = $this->entityManager->getRepository('MusicJelly\Entities\StartPath');
+        $startPath = new StartPath();
+        $startPath->url = $url;
+        $startPathRepository->save($startPath);
+
         // var_dump('saving', $url);
     }
 
@@ -88,7 +117,6 @@ class MldbCrawler {
         $youtube = new Google_YoutubeService($client);  
       
         $searchResponse = $youtube->search->listSearch('id,snippet', array(
-          'order' => 'viewCount',
           'type' => 'video',
           'videoEmbeddable' => 'true',  
           'q' => $term,  

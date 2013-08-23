@@ -22,10 +22,7 @@ class TrackService extends Service {
             if($term){
                 $this->debug('term is '.$term);
                 $searchRepository = $this->entityManager->getRepository('MusicJelly\Entities\SearchTerm');
-                $alreadySearched = $searchRepository->isAlreadySearched($term);
-                if($alreadySearched === false){
-                    $this->searchForTracks($term);
-                }
+                $alreadySearched = $searchRepository->addTerm($term);
             }
             $trackRepository = $this->entityManager->getRepository('MusicJelly\Entities\Track');
 
@@ -45,11 +42,6 @@ class TrackService extends Service {
 
             // $this->app['mailer']->send($message);
             return $this->app->json($trackDtos);
-    }
-
-    public function searchForTracks($term){
-        $crawler = new MldbCrawler;
-        $crawler->search($term);
     }
 
 }

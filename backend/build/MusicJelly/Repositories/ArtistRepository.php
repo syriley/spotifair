@@ -5,7 +5,7 @@ namespace MusicJelly\Repositories;
 use Doctrine\ORM\EntityRepository;
 use MusicJelly\Entities\SearchTerm;
 
-class ArtistRepository extends EntityRepository
+class ArtistRepository extends Repository
 {
     public function save($artist){
     	$dbArtist = $this->findOneBy(array(

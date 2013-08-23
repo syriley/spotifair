@@ -4,7 +4,7 @@ namespace MusicJelly\Repositories;
 
 use Doctrine\ORM\EntityRepository;
 
-class TrackRepository extends EntityRepository
+class TrackRepository extends Repository
 {
     public function findLoopsForNumber($number=6){
         $loops = $this->findAll();

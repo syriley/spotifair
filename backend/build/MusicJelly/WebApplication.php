@@ -14,7 +14,11 @@ use Symfony\Component\HttpFoundation\Response;
 class WebApplication{
 
 
-	public function __construct(){
+	public function __construct($options){
+		$this->logFile = __DIR__.'/../../logs/development.log';
+		if($options && isset($options['logFile'])) {
+			$this->logFile = $options['logFile'];
+		}
 		$app = new Application();
 		$this->app = $app;
 
@@ -86,7 +90,7 @@ class WebApplication{
 	public function registerLog(){
 		$app = $this->app;
 		$app->register(new MonologServiceProvider(), array(
-		    'monolog.logfile' => __DIR__.'/../../logs/development.log',
+		    'monolog.logfile' => $this->logFile,
 		    'monolog.name' => 'MusicJelly',
 		));
 		$app['monolog']->pushHandler(new ChromePHPHandler());
