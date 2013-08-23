@@ -56,6 +56,7 @@ class TrackRepository extends Repository
                     OR al.name like ?1";
 
         $query = $this->_em->createQuery($dql);
+        $query->setMaxResults(20);
 
         $query->setParameter(1, '%'.$term.'%');
         return $query->getResult();
