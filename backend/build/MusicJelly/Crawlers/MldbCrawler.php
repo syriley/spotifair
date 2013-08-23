@@ -88,7 +88,7 @@ class MldbCrawler {
     }
 
     public function saveTrackUrl($path){
-        $url= SELF::MLDB_ORG.$path;
+        $url= self::MLDB_ORG.$path;
         $mldbTrackRepository = $this->entityManager->getRepository('MusicJelly\Entities\MldbTrack');
         $mldbTrack = new MldbTrack();
         $mldbTrack->url = $url;
