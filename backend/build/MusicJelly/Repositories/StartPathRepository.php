@@ -27,7 +27,9 @@ class StartPathRepository extends Repository
         $query = $this->_em->createQuery($dql);
         $query->setMaxResults(1);
         $result = $query->getResult();
-        return $result[0];
+        if(isset($result[0])) {
+            return $result[0];
+        }
     }
 
     public function setCompleted($startPath){
