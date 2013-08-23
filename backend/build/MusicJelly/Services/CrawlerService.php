@@ -26,7 +26,7 @@ class CrawlerService extends Service {
             $this->checkNewSearches();
             $this->crawlStartPaths();
             $this->crawlMldbTracks();
-            sleep(1);
+            usleep(500000);
         }
         return $this->app->json('complete');
     }
