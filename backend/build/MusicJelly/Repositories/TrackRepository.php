@@ -38,7 +38,13 @@ class TrackRepository extends Repository
 
         $query->setParameter(1, $track->name);
         $query->setParameter(2, $track->artist->name);
-        $query->setParameter(3, $track->album->name);
+        if($track->album) {
+            $query->setParameter(3, $track->album->name);
+        }
+        else {
+            $query->setParameter(3, '');   
+        }
+
         $tracks = $query->getResult();
         if(count($tracks) > 0){
             return true;
