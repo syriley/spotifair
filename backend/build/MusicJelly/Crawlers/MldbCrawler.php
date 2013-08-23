@@ -58,6 +58,9 @@ class MldbCrawler {
         foreach ($html->find('a') as $link) {
             if(strpos($link->href, 'artist-') !== false && strpos($link->style, 'font-size:14') !== false){
                 $artist->name = trim($link->plaintext);
+                if(empty($artist->name)) {
+                    return;
+                }
                 $this->saveStartPath(self::MLDB_ORG.$link->href);
             }
             if(strpos($link->href, 'album-') !== false && strpos($link->style, 'font-size:14px') !== false){
