@@ -22,7 +22,7 @@ class CrawlerService extends Service {
     public function startCrawler(Request $request){
             
             //Check for any new searches
-        for($i = 0; $i < 2; $i++) {
+        for($i = 0; $i < 1000; $i++) {
             $this->checkNewSearches();
             $this->crawlStartPaths();
             $this->crawlMldbTracks();

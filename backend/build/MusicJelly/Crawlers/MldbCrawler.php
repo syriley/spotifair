@@ -102,7 +102,6 @@ class MldbCrawler {
         $startPath->url = $url;
         $startPathRepository->save($startPath);
 
-        // var_dump('saving', $url);
     }
 
     public function getYoutubeUrl($term){

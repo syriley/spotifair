@@ -32,7 +32,6 @@ class StartPathRepository extends Repository
 
     public function setCompleted($startPath){
         $startPath->completed = new DateTime();
-        var_dump($startPath);
         parent::save($startPath);
     }
 }

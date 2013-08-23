@@ -2,7 +2,7 @@
 
 namespace MusicJelly\Entities;
 
-use \Date;
+use \DateTime;
 /**
  * @Entity(repositoryClass="MusicJelly\Repositories\SearchTermRepository") 
  * @Table(name="searchedTerms")
@@ -23,7 +23,7 @@ class SearchTerm
     public function __construct(){
         $this->complete = false;
         $this->count = 1;
-        $this->created = new Date();
+        $this->created = new DateTime();
     }
 
     public function toDto(){
