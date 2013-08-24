@@ -127,9 +127,6 @@ class MldbCrawler {
           'maxResults' => 1,  
         ));  
       
-        $videos = '';  
-        $channels = '';  
-      
         if(!isset($searchResponse['items'][0])) {
             return null;
         }

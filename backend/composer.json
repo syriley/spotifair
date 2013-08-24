@@ -5,9 +5,11 @@
         "pimple/pimple": "*",
         "symfony/security": "2.3.*",
         "monolog/monolog": ">=1.0.0",
-        "swiftmailer/swiftmailer": ">=4.1.2,<4.2-dev"
+        "swiftmailer/swiftmailer": ">=4.1.2,<4.2-dev",
+        "guzzle/guzzle": "~3.4"
     },
     "autoload": {
-        "psr-0": {"MusicJelly\\": "build/"}
+        "psr-0": {"MusicJelly\\": "build/",
+                 "MusicBrainz\\": "build/"}
     }
 }
