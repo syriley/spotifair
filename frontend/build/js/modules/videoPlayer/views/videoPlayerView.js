@@ -20,7 +20,8 @@ define(
 
 
         initialize: function(){
-          vent.on('controls:stop', this.stop, this);
+            _.bindAll(this, 'play');
+            vent.on('controls:stop', this.stop, this);
         },
 
         onShow: function(){
@@ -47,9 +48,15 @@ define(
             if(this.video) {
                 this.video.destroy();
             }
+            var term = track.model.get('artistName') + ', ' + track.model.get('title');
+            console.log(track.model.attributes);         
+            $.get('/api/youtube',{
+                term: term,
+            }).done(this.play);
+        },
 
-            var video = this.video = Popcorn.youtube('#video',
-            track.model.get('url'));          
+        play: function(response){
+            var video = this.video = Popcorn.youtube('#video',response); 
             video.play();
         }
     });

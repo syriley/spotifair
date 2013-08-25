@@ -72,13 +72,17 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 
   buffer += "<td>";
-  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (stack1 = helpers.title) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</td>\n<td>"
-    + escapeExpression(((stack1 = ((stack1 = depth0.album),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</td>\n<td>"
-    + escapeExpression(((stack1 = ((stack1 = depth0.artist),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</td>\n<td>";
+  if (stack1 = helpers.album) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.album; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</td>\n<td>";
+  if (stack1 = helpers.artistName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.artistName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
     + "</td>";
   return buffer;
   });

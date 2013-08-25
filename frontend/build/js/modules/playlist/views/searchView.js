@@ -34,6 +34,7 @@ define(
         searchClicked: function(){
             var searchTerm = this.ui.searchTerm.val();
             console.log(searchTerm);
+            searchTerm = '"' + searchTerm + '"';
             this.trigger('search:request', searchTerm);
 
         }
