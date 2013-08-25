@@ -14,7 +14,7 @@
   <div class="wrapper">
   <div class="jumbotron">
       <div class="container">
-        <h1>Welcome to Spotifair!</h1>
+        <h1>This is Spotifair.</h1>
         
       </div>
     </div>
