@@ -3,9 +3,8 @@ define(
 [
     'marionette',
     'templates',
-    'modules/vent/module'
 ],
-    function(Marionette, Templates, vent){
+    function(Marionette, Templates){
     'use strict';
 
     return Marionette.ItemView.extend({

@@ -35,11 +35,13 @@ abstract class AbstractFilter
                     if ($params['query'] != '') {
                         $params['query'] .= '+AND+';
                     }
-                    $params['query'] .= $key . ':' .  urlencode(preg_replace('/([\+\-\!\(\)\{\}\[\]\^\~\*\?\:\\\\])/', '/$1', $val));
+                    if($key !== 'rgid') {
+                        $val = urlencode(preg_replace('/([\+\-\!\(\)\{\}\[\]\^\~\*\?\:\\\\])/', '/$1', $val));
+                    }
+                    $params['query'] .= $key . ':' .  $val;
                 }
             }
         }
-
         return $params;
     }
 }

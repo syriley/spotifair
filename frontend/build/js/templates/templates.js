@@ -62,7 +62,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<thead>\n	<tr>\n		<th>Track</th>\n		<th>Album</th>\n		<th>Artist</th>\n	</tr>\n</thead>";
+  return "<thead>\n	<tr>\n		<th>Track</th>\n		<th>Artist</th>\n		<th>Album</th>\n		<th></th>\n	</tr>\n</thead>";
   });
 
 this["Templates"]["playlist/templates/trackTemplate.html"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -75,15 +75,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.title) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</td>\n<td>";
-  if (stack1 = helpers.artistName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.artistName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</td>\n<td>";
-  if (stack1 = helpers.album) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.album; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</td>";
+    + "</td>\n<td><a class=\"artist\" href=\"#\">"
+    + escapeExpression(((stack1 = ((stack1 = depth0.artist),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</a></td>\n<td><a class=\"album\" href=\"#\">"
+    + escapeExpression(((stack1 = ((stack1 = depth0.album),stack1 == null || stack1 === false ? stack1 : stack1.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</a></td>\n<td><button class=\"play btn\">Play</button></td>";
   return buffer;
   });
 

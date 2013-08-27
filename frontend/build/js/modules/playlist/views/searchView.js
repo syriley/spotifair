@@ -3,8 +3,9 @@ define(
 [ 
     'marionette',
     'templates',
+    'events/searchVent',
 ],
-    function(Marionette, Templates){
+    function(Marionette, Templates, vent){
     'use strict';
 
     return Marionette.ItemView.extend({
@@ -35,7 +36,10 @@ define(
             var searchTerm = this.ui.searchTerm.val();
             console.log(searchTerm);
             searchTerm = '"' + searchTerm + '"';
-            this.trigger('search:request', searchTerm);
+            var search = {
+                term: searchTerm,
+            };
+            vent.trigger('search:request', search);
 
         }
 

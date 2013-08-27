@@ -4,7 +4,7 @@ define(
     'marionette',
     'jquery',
     'templates',
-    'modules/vent/module',
+    'events/searchVent',
     'modules/playlist/views/trackView',
 ],
     function(Marionette, $, Templates, vent, TrackView){
@@ -18,16 +18,6 @@ define(
         onRender:function(){
         	var template = Templates['playlist/templates/tableHeadTemplate.html'];
         	this.$el.prepend(template());
-        },
-
-        search:function(searchTerm){
-            console.log(searchTerm);
-            this.collection.fetch({
-                data: $.param({
-                    term: searchTerm,
-                })
-            });
         }
-
     });
 });

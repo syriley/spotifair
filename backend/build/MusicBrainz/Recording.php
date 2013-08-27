@@ -2,6 +2,9 @@
 
 namespace MusicBrainz;
 
+use MusicBrainz\Album;
+use MusicBrainz\Artist;
+
 /**
  * Represents a MusicBrainz Recording object
  *
@@ -20,13 +23,10 @@ class Recording
 
         $this->id    = (string) $recording['id'];
         $this->title = (string) $recording['title'];
-        $this->artistName = (string) $recording['artist-credit'][0]['artist']['name'];
-        $this->album = (string) $recording['releases'][0]['title'];
-        if (isset($recording['artist-credit'][0]['artist']['disambiguation'])) {
-            $this->artistDisambiguation = (string) $recording['artist-credit'][0]['artist']['disambiguation'];
+        $this->artist = new Artist($recording['artist-credit'][0]['artist']);
+        if($recording['releases'][0]) {
+            $this->album = new Album($recording['releases'][0]);
         }
         $this->releaseCount = count($recording['releases']);
-        //  var_dump($recording['artist-credit'][0]['artist']['name']);
-        // $this->artist = (string) $recording['artist-credit']['artist']['name'];
     }
 }

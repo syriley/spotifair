@@ -57,12 +57,27 @@ class TrackService extends Service {
     }
 
     public function recordingSearch(Request $request){
-        $term = $request->get('term');
         $brainz = new MusicBrainz(new Client());
         $brainz->setUserAgent('ApplicationName', '0.1', 'http://example.com');
+        
         $args = array(
-            "recording"     => $term,
+            'status' => 'official'
         );
+
+        $artist = $request->get('artist');
+        if($artist) {
+            $args['artist'] = '"'.$artist.'"';
+        }
+        $term = $request->get('term');
+        if($term){
+            $args['recording'] = $term;
+        }
+
+        $albumId = $request->get('albumId');
+        if($albumId){
+            $args['rgid'] = $albumId;
+        }
+            
         $recordings = $brainz->search(new RecordingFilter($args));
 
         usort($recordings, function($a, $b){

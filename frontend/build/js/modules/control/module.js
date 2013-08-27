@@ -13,8 +13,6 @@ define([
 
             region.show(layout);
             layout.main.show(controlView);
-            timer.listenTo(controlView, 'controls:play', timer.start);
-            timer.listenTo(controlView, 'controls:stop', timer.stop);
             controlView.listenTo(timer, 'timer:update', controlView.updateTime);
             this.listenTo(timer, 'timer:tick', this.restartLoop);
 

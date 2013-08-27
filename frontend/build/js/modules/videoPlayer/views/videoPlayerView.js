@@ -6,7 +6,7 @@ define(
     'marionette',
     'templates',
     'popcorn',
-    'modules/vent/module',
+    'events/searchVent',
 ],
     function($, _, Marionette, Templates, popcorn, vent){
     'use strict';
@@ -15,7 +15,7 @@ define(
         className: 'video-container',
         template : Templates['videoPlayer/templates/videoPlayerTemplate.html'],
         ui: {
-            video: '.video',
+            video: '#video',
         },
 
 
@@ -47,8 +47,9 @@ define(
         selectTrack: function(track){
             if(this.video) {
                 this.video.destroy();
+                this.ui.video.empty();
             }
-            var term = track.model.get('artistName') + ', ' + track.model.get('title');
+            var term = track.model.get('artist').name + ', ' + track.model.get('title');
             console.log(track.model.attributes);         
             $.get('/api/youtube',{
                 term: term,
