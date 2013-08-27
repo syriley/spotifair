@@ -57,28 +57,27 @@ class TrackService extends Service {
     }
 
     public function recordingSearch(Request $request){
-        $brainz = new MusicBrainz(new Client());
-        $brainz->setUserAgent('ApplicationName', '0.1', 'http://example.com');
-        
-        $args = array(
-            'status' => 'official'
-        );
-
         $artist = $request->get('artist');
-        if($artist) {
-            $args['artist'] = '"'.$artist.'"';
-        }
         $term = $request->get('term');
+        $albumId = $request->get('albumId');
+
+        if($artist) {
+            $args = array('artist' => '"'.$artist.'"');
+            $recordings = $this->search($args);
+        }
         if($term){
-            $args['recording'] = $term;
+            $args = array('artist' => $term);
+            $artists = $this->search($args);
+            $args = array('recording' => $term);
+            $tracks = $this->search($args);
+            $recordings = array_merge($artists, $tracks);
         }
 
-        $albumId = $request->get('albumId');
         if($albumId){
-            $args['rgid'] = $albumId;
+            $args = array('rgid' => $albumId);
+            $recordings = $this->search($args);
         }
             
-        $recordings = $brainz->search(new RecordingFilter($args));
 
         usort($recordings, function($a, $b){
             return $a->releaseCount < $b->releaseCount;
@@ -86,6 +85,14 @@ class TrackService extends Service {
 
 
         return $this->app->json($recordings);
+    }
+
+    public function search($args){
+        $args ['status'] = 'official';
+
+        $brainz = new MusicBrainz(new Client());
+        $brainz->setUserAgent('ApplicationName', '0.1', 'http://example.com');
+        return $brainz->search(new RecordingFilter($args));
     }
 
      public function getYoutubeUrl(Request $request){
